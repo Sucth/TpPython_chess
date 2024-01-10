@@ -1,0 +1,76 @@
+[
+    {
+        "name": "TEST",
+        "date": "12",
+        "players": [
+            "a",
+            "b",
+            "c",
+            "d",
+            "gf",
+            "Name#2499"
+        ],
+        "matches": [
+            {
+                "player1": "a",
+                "player2": "b"
+            },
+            {
+                "player1": "a",
+                "player2": "c"
+            },
+            {
+                "player1": "a",
+                "player2": "d"
+            },
+            {
+                "player1": "a",
+                "player2": "gf"
+            },
+            {
+                "player1": "a",
+                "player2": "Name#2499"
+            },
+            {
+                "player1": "b",
+                "player2": "c"
+            },
+            {
+                "player1": "b",
+                "player2": "d"
+            },
+            {
+                "player1": "b",
+                "player2": "gf"
+            },
+            {
+                "player1": "b",
+                "player2": "Name#2499"
+            },
+            {
+                "player1": "c",
+                "player2": "d"
+            },
+            {
+                "player1": "c",
+                "player2": "gf"
+            },
+            {
+                "player1": "c",
+                "player2": "Name#2499"
+            },
+            {
+                "player1": "d",
+                "player2": "gf"
+            },
+            {
+                "player1": "d",
+                "player2": "Name#2499"
+            },
+            {
+                "player1": "gf",
+                "player2": "Name#2499"
+            }
+        ]
+    }
+]
