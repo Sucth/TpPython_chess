@@ -1,6 +1,7 @@
 import json
 from itertools import combinations
 import random
+import Tournois
 from Player import Player
 
 class Match:
@@ -88,4 +89,4 @@ class Match:
 
 
     def display_match_result(self, player1, player2, result):
-        print(player1, " VS ", player2, " = ", result)
+        de.display_match_result(player1, player2, result)

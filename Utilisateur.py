@@ -7,6 +7,7 @@ from Player import Player
 class Terminal:
     def __init__(self):
         self.players_list = self.load_players()
+        self.current_tournament = None
 
     def run(self):
         while True:
@@ -61,22 +62,26 @@ class Terminal:
         new_tournament.create_all_vs_all_matches(name_tournois)
 
     def add_player_at_tournament(self):
-        new_tournament = Tournois.Tournament("Nom du Tournoi", "2024-01-09")
-        name_tournois = input("Enter Tournament name: ")
-        name_player = input("Enter player name: ")
+        if self.current_tournament:
+            name_player = input("Enter player name: ")
+            self.current_tournament.add_player(name_player)
+            print(f"{name_player} added to the tournament.")
+        else:
+            print("No tournament selected. Please create a tournament first.")
 
-        new_tournament.add_players_to_tournament(name_tournois, name_player)
 
     def create_tournois(self):
         name = input("Enter Tournament name: ")
         date = input("Enter tournament date: ")
 
-        new_tournament = Tournois.Tournament("Nom du Tournoi", "2024-01-09")
+        new_tournament = Tournois.Tournament(name, date)
         new_tournament.create_tournament(name, date)
 
+        self.current_tournament = new_tournament
+
+
     def display_all_tournaments(self):
-        new_tournament = Tournois.Tournament("Nom du Tournoi", "2024-01-09")
-        new_tournament.display_all_tournaments()
+        Tournois.Tournament.display_all_tournaments()
         
     def load_players(self):
         try:

@@ -2,6 +2,7 @@ import json
 from Player import Player
 import Matchs
 from itertools import combinations
+import csv
 
 class Tournament:
     def __init__(self, name, date):
@@ -173,4 +174,30 @@ class Tournament:
         else:
             print("No tournaments found.")
 
+    def display_match_result(self, player1, player2, result, name):
+        print(f"{player1} VS {player2} = {result}")
 
+        tournament_csv_file = f"result_{name}.csv"
+        with open(tournament_csv_file, mode='a', newline='') as csvfile:
+            fieldnames = ['Player1', 'Player2', 'Result']
+            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+
+            if csvfile.tell() == 0:
+                writer.writeheader()
+
+            writer.writerow({'Player1': player1, 'Player2': player2, 'Result': result})
+
+    def display_players_and_matches(self):
+        if self.players:
+            print("Players:")
+            for player in self.players:
+                print(f" - {player}")
+        else:
+            print("No players in this tournament.")
+
+        if self.matches:
+            print("Matches:")
+            for match in self.matches:
+                print(f" - {match['player1']} vs {match['player2']}")
+        else:
+            print("No matches in this tournament.")
