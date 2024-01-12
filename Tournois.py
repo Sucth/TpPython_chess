@@ -174,10 +174,10 @@ class Tournament:
         else:
             print("No tournaments found.")
 
-    def display_match_result(self, player1, player2, result, name):
+    def display_match_result(self, player1, player2, result):
         print(f"{player1} VS {player2} = {result}")
 
-        tournament_csv_file = f"result_{name}.csv"
+        tournament_csv_file = f"result_{self.name}.csv"
         with open(tournament_csv_file, mode='a', newline='') as csvfile:
             fieldnames = ['Player1', 'Player2', 'Result']
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)

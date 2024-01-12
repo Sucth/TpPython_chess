@@ -67,6 +67,7 @@ class Match:
         for player in all_players:
             print(player)
 
+    @staticmethod
     def play_all_matches(self):
         with open('tournois.json', 'r') as file:
             data = json.load(file)
@@ -89,4 +90,5 @@ class Match:
 
 
     def display_match_result(self, player1, player2, result):
-        de.display_match_result(player1, player2, result)
+        print(f"{player1} VS {player2} = {result}")
+        Tournois.Tournament.display_match_result(self, player1, player2, result)

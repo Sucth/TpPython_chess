@@ -4,4 +4,3 @@ import Tournois
 
 Tagrossemere = Utilisateur.Terminal()
 Tagrossemere.run()
-

@@ -52,22 +52,19 @@ class Terminal:
                 print("Invalid choice. Please enter a valid option.")
 
     def start_match(self):
-        new_match = Matchs.Match("w", "w", None)
-        new_match.play_all_matches()
+        Matchs.Match.play_all_matches(self)
 
     def add_match(self):
-        new_tournament = Tournois.Tournament("Nom du Tournoi", "2024-01-09")
         name_tournois = str(input("Enter Tournament name: "))
 
-        new_tournament.create_all_vs_all_matches(name_tournois)
+        Tournois.Tournament.create_all_vs_all_matches(name_tournois)
 
     def add_player_at_tournament(self):
-        if self.current_tournament:
-            name_player = input("Enter player name: ")
-            self.current_tournament.add_player(name_player)
-            print(f"{name_player} added to the tournament.")
-        else:
-            print("No tournament selected. Please create a tournament first.")
+        name_tournois = input("Enter Tournament name: ")
+        name_player = input("Enter player name: ")
+
+        Tournois.Tournament.add_players_to_tournament(self, name_tournois, name_player)
+        print(f"{name_player} added to the tournament.")
 
 
     def create_tournois(self):

@@ -1,1 +1,4 @@
 les joueurs ne peuvent etre vide
+export csv
+instance tournois
+instance match

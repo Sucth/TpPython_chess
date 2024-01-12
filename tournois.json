@@ -4,12 +4,22 @@
         "date": "12/12/12",
         "players": [
             "test",
-            "test2"
+            "test2",
+            "test3",
+            "monstre"
         ],
         "matches": [
             {
                 "player1": "test",
                 "player2": "test2"
+            },
+            {
+                "player1": "test",
+                "player2": "test3"
+            },
+            {
+                "player1": "test2",
+                "player2": "test3"
             }
         ]
     }
