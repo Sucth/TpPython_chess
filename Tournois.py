@@ -51,11 +51,12 @@ class Tournament:
                 json.dump([tournament.to_dict()], file, indent=4)
 
     @staticmethod
-    def update_tournament(tournament_name, new_date):
+    def update_tournament(tournament_name, new_name, new_date):
         with open('tournois.json', 'r+') as file:
             data = json.load(file)
             for tournament in data:
                 if tournament['name'] == tournament_name:
+                    tournament['name'] = new_name
                     tournament['date'] = new_date
                     file.seek(0)
                     json.dump(data, file, indent=4)
@@ -71,10 +72,12 @@ class Tournament:
                 if tournament['name'] == tournament_name:
                     data.remove(tournament)
                     file.seek(0)
+                    file.truncate()
                     json.dump(data, file, indent=4)
                     break
             else:
-                print("Tournoi non trouvé.")
+                print(f"Tournoi '{tournament_name}' non trouvé.")
+
 
     @staticmethod
     def load_tournaments():
@@ -174,10 +177,10 @@ class Tournament:
         else:
             print("No tournaments found.")
 
-    def display_match_result(self, player1, player2, result):
+    def display_match_result(tournament_name, player1, player2, result):
         print(f"{player1} VS {player2} = {result}")
 
-        tournament_csv_file = f"result_{self.name}.csv"
+        tournament_csv_file = f"result.csv"
         with open(tournament_csv_file, mode='a', newline='') as csvfile:
             fieldnames = ['Player1', 'Player2', 'Result']
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
@@ -186,6 +189,7 @@ class Tournament:
                 writer.writeheader()
 
             writer.writerow({'Player1': player1, 'Player2': player2, 'Result': result})
+
 
     def display_players_and_matches(self):
         if self.players:

@@ -1,25 +1,15 @@
 [
     {
-        "name": "test",
-        "date": "12/12/12",
+        "name": "1",
+        "date": "1",
         "players": [
-            "test",
-            "test2",
-            "test3",
-            "monstre"
+            "1",
+            "2"
         ],
         "matches": [
             {
-                "player1": "test",
-                "player2": "test2"
-            },
-            {
-                "player1": "test",
-                "player2": "test3"
-            },
-            {
-                "player1": "test2",
-                "player2": "test3"
+                "player1": "1",
+                "player2": "2"
             }
         ]
     }

@@ -6,6 +6,7 @@ from Player import Player
 
 class Terminal:
     def __init__(self):
+        self.read_or_initialize_json()
         self.players_list = self.load_players()
         self.current_tournament = None
 
@@ -21,7 +22,10 @@ class Terminal:
             print("7. Add Player Tournament            ->    ")
             print("8. create all  Match Tournament     ->    A faire une fois tous les joueurs ajouter")
             print("9. Start match                      ->    ")
-            print("9. Quit                             ->    Quitter le programme")
+            print("10. Update Tournament               ->    ")
+            print("11. Delete Tournament               ->    ")
+            print("12. Player Stats                    ->    ")
+            print("13. Quit                            ->    Quitter le programme")
 
             user_input = input("Enter your choice: ")
             if user_input == "1":
@@ -42,6 +46,12 @@ class Terminal:
                 self.add_match()
             elif user_input == "9":
                 self.start_match()
+            elif user_input == "10":
+                self.update_tournament()
+            elif user_input == "11":
+                self.delete_tournament()
+            elif user_input == "12":
+                self.player_stat()
 
 
             elif user_input == "" or user_input.lower() == "quit":
@@ -51,13 +61,40 @@ class Terminal:
             else:
                 print("Invalid choice. Please enter a valid option.")
 
+    def player_stat(self):
+        Player.player_stat(self)
+    
+    def read_or_initialize_json(self):
+        try:
+            with open('joueurs.json', 'r') as file:
+                data = json.load(file)
+        except (FileNotFoundError, json.decoder.JSONDecodeError):
+            data = []
+            with open('joueurs.json', 'w') as file:
+                json.dump(data, file, indent=4)
+
+        return data
+
+    def delete_tournament(self):
+        name_tournois = input("Enter Tournament name: ")
+
+        Tournois.Tournament.delete_tournament(name_tournois)
+
+    def update_tournament(self):
+        name_tournois = input("Enter Tournament name: ")
+        new_tournois = input("Enter New Tournament name: ")
+        new_date = input("Enter New Tournament Date: ")
+
+        Tournois.Tournament.update_tournament(name_tournois, new_tournois, new_date)
+        print(f"{new_tournois} Updated.")
+
     def start_match(self):
-        Matchs.Match.play_all_matches(self)
+        Matchs.Match.play_all_matches()
 
     def add_match(self):
         name_tournois = str(input("Enter Tournament name: "))
 
-        Tournois.Tournament.create_all_vs_all_matches(name_tournois)
+        Tournois.Tournament.create_all_vs_all_matches(self, name_tournois)
 
     def add_player_at_tournament(self):
         name_tournois = input("Enter Tournament name: ")

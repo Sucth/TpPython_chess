@@ -34,14 +34,22 @@ class Match:
             if player_data["Name"] == player1:
                 if result == "1-0":
                     player_data["Elo"] += 100
+                    player_data["Win"] += 1
+                    player_data["Match"] += 1
                 elif result == "0-1":
                     player_data["Elo"] -= 100
+                    player_data["Loose"] += 1
+                    player_data["Match"] += 1
 
             elif player_data["Name"] == player2:
                 if result == "1-0":
                     player_data["Elo"] -= 100
+                    player_data["Loose"] += 1
+                    player_data["Match"] += 1
                 elif result == "0-1":
                     player_data["Elo"] += 100
+                    player_data["Win"] += 1
+                    player_data["Match"] += 1
 
         with open('joueurs.json', 'w') as players_file:
             json.dump(players_data, players_file, indent=4)
@@ -68,7 +76,7 @@ class Match:
             print(player)
 
     @staticmethod
-    def play_all_matches(self):
+    def play_all_matches():
         with open('tournois.json', 'r') as file:
             data = json.load(file)
 
@@ -77,16 +85,19 @@ class Match:
             for match in matches:
                 player1 = match.get("player1")
                 player2 = match.get("player2")
-                
+
                 if player1 and player2:
-                    result = self.simulate_match()
+                    result = Match.simulate_match()
                     new_match = Match(player1, player2, result)
                     new_match.display_match_result(player1, player2, result)
-                    self.update_player_elo(player1, player2, result)
+                    new_match.update_player_elo(player1, player2, result)
 
-    def simulate_match(self):
+
+    @staticmethod
+    def simulate_match():
         result = random.choice(["1-0", "0-1", "0.5-0.5"])
         return result
+
 
 
     def display_match_result(self, player1, player2, result):

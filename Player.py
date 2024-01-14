@@ -8,14 +8,19 @@ class Player:
         self.Firstname = firstname
         self.Date = birthdate
         self.Elo = 1200
+        self.Win = 0
+        self.Loose = 0
+        self.Match = 0
+
 
     def save_info(self, players):
-        players.append({"Id": self.Id, "Name": self.Name, "Firstname": self.Firstname, "Date": self.Date, "Elo": self.Elo})
+        players.append({"Id": self.Id, "Name": self.Name, "Firstname": self.Firstname, "Date": self.Date, "Elooo": self.Elo, "Win": self.Win, "Loose": self.Loose, "Match": self.Match})
         with open("joueurs.json", 'w') as f:
             json.dump(players, f, indent=4)
 
     def __str__(self):
-        return f"Id: {self.Id}, Name: {self.Name}, Firstname: {self.Firstname}, Date: {self.Date}, Elo: {self.Elo}"
+        return f"Id: {self.Id}, Name: {self.Name}, Firstname: {self.Firstname}, Date: {self.Date}, Elo: {self.Elo}, Wins: {self.Win}, Losses: {self.Loose}, Match: {self.Match}"
+
     
     def to_dict(self):
         return {
@@ -23,9 +28,37 @@ class Player:
             "Name": self.Name,
             "Firstname": self.Firstname,
             "Date": self.Date,
-            "Elo": self.Elo
+            "Elo": self.Elo,
+            "Win":self.Win,
+            "Loose":self.Loose,
+            "Match":self.Match
         }
     
+    def display_player_stats(self, name):
+        win_percentage = (self.Win / self.Match) * 100 if self.Match > 0 else 0
+
+        print(f"Player Stats for {name}:")
+        print(f"Total Matches Played: {self.Match}")
+        print(f"Total Wins: {self.Win}")
+        print(f"Total Losses: {self.Loose}")
+        print(f"Win Percentage: {win_percentage:.2f}%")
+    
+    def player_stat(self):
+        player_name_to_display_stats = input("Enter player name to display stats: ")
+        players_list = Player.load_players()
+        
+        for player_data in players_list:
+            if player_data["Name"] == player_name_to_display_stats:
+                player_obj = Player(player_data["Name"], player_data["Firstname"], player_data["Date"])
+                player_obj.Win = player_data["Win"]
+                player_obj.Loose = player_data["Loose"]
+                player_obj.Match = player_data["Match"]
+                player_obj.display_player_stats(player_name_to_display_stats)
+                break
+        else:
+            print("Player not found.")
+
+
     def generate_unique_id(self):
         players = Player.load_players()
         unique_id = None

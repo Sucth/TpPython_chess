@@ -1,30 +1,22 @@
 [
     {
-        "Id": "0000",
-        "Name": "init",
-        "Firstname": "test",
-        "Date": "pas toucher",
-        "Elo": 0
+        "Id": "5820",
+        "Name": "1",
+        "Firstname": "1",
+        "Date": "1",
+        "Elo": 1100,
+        "Win": 1,
+        "Loose": 2,
+        "Match": 3
     },
     {
-        "Id": "9126",
-        "Name": "test",
-        "Firstname": "sdf",
-        "Date": "12",
-        "Elo": 1300
-    },
-    {
-        "Id": "2247",
-        "Name": "test2",
-        "Firstname": "gfd",
-        "Date": "12",
-        "Elo": 1300
-    },
-    {
-        "Id": "9856",
-        "Name": "monstre",
-        "Firstname": "triple",
-        "Date": "12/12/12",
-        "Elo": 1200
+        "Id": "8573",
+        "Name": "2",
+        "Firstname": "2",
+        "Date": "2",
+        "Elo": 1300,
+        "Win": 1,
+        "Loose": 2,
+        "Match": 3
     }
 ]
