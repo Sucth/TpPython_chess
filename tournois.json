@@ -1,15 +1,15 @@
 [
     {
         "name": "1",
-        "date": "1",
+        "date": "1212-12-12",
         "players": [
-            "1",
-            "2"
+            "2",
+            "3"
         ],
         "matches": [
             {
-                "player1": "1",
-                "player2": "2"
+                "player1": "2",
+                "player2": "3"
             }
         ]
     }

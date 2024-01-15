@@ -3,6 +3,7 @@ from Player import Player
 import Matchs
 from itertools import combinations
 import csv
+from colorama import *
 
 class Tournament:
     def __init__(self, name, date):
@@ -159,18 +160,18 @@ class Tournament:
         if tournaments:
             print("All Tournaments:")
             for tournament in tournaments:
-                print(f"Name: {tournament['name']}, Date: {tournament['date']}")
+                print(Fore.YELLOW + f"Name: {tournament['name']}, Date: {tournament['date']}" + Fore.RESET)
                 if tournament['players']:
-                    print("Players:")
+                    print(Fore.MAGENTA + "Players:" + Fore.RESET)
                     for player in tournament['players']:
-                        print(f" - {player}")
+                        print(Fore.RED + f" - {player}" + Fore.RESET)
                 else:
                     print("No players in this tournament.")
                     
                 if tournament['matches']:
-                    print("Matches:")
+                    print(Fore.MAGENTA + "Matches:" + Fore.RESET)
                     for match in tournament['matches']:
-                        print(f" - {match['player1']} vs {match['player2']}")
+                        print(Fore.RED + f" - {match['player1']} vs {match['player2']}" + Fore.RED)
                 else:
                     print("No matches in this tournament.")
                 print()

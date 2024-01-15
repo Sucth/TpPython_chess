@@ -1,5 +1,7 @@
+import datetime
 import json
 import random
+from colorama import *
 
 class Player:
     def __init__(self, name, firstname, birthdate):
@@ -12,6 +14,13 @@ class Player:
         self.Loose = 0
         self.Match = 0
 
+    def validate(self, date_text):
+        try:
+            datetime.date.fromisoformat(date_text)
+            return True
+        except ValueError:
+            print("Incorrect data format, should be YYYY-MM-DD")
+            return False    
 
     def save_info(self, players):
         players.append({"Id": self.Id, "Name": self.Name, "Firstname": self.Firstname, "Date": self.Date, "Elooo": self.Elo, "Win": self.Win, "Loose": self.Loose, "Match": self.Match})
@@ -105,7 +114,7 @@ class Player:
         if players:
             print("All Players:")
             for player in players:
-                print(f"ID: {player['Id']}, Name: {player['Name']}, Firstname: {player['Firstname']}, Date: {player['Date']}, Elo: {player['Elo']}")
+                print(Fore.MAGENTA + f"ID: {player['Id']}, Name: {player['Name']}, Firstname: {player['Firstname']}, Date: {player['Date']}, Elo: {player['Elo']}" + Fore.RESET)
         else:
             print("No players found.")
 
